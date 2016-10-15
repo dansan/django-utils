@@ -10,7 +10,10 @@ from django.core.cache import cache
 from django.db.models.query import QuerySet
 from django.utils.encoding import smart_unicode, smart_str
 from django.utils.functional import wraps
-from django.utils.hashcompat import sha_constructor
+try:
+    from hashlib import sha1 as sha_constructor
+except ImportError:
+    from django.utils.hashcompat import sha_constructor
 
 
 class EmptyObject(object):
